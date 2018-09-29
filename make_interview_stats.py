@@ -23,7 +23,7 @@ def get_interviews_records(filter=None):
         coname = os.path.basename(df).replace('.json', '')
         with open(df, 'r') as f:
             jdata = json.loads(f.read())
-        
+
         if firms and coname.lower() not in firms:
             continue
 
@@ -38,7 +38,7 @@ def get_interviews_records(filter=None):
                     jdata[k] = float(v)
                 except:
                     pass
-            
+
         records[coname] = jdata
     #import epdb; epdb.st()
     return records
@@ -54,7 +54,7 @@ def records_to_frame(records):
             if k2 not in unique_keys:
                 unique_keys.append(k2)
             df_records.append((k2, v2))
-    
+
     df = pd.DataFrame.from_records(df_records)
     return (unique_keys, df_records, df)
 
